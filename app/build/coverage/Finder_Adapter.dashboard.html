@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Finder</title>
+    <title>Finder/Adapter</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <!--[if IE]><script src="excanvas.compressed.js"></script><![endif]-->
     <script src="RGraph.common.core.js" ></script>
@@ -13,8 +13,8 @@
 
   <body>
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr><td class="title">Finder</td></tr>
-      <tr><td><div align="center"><p><a href="Finder.html">Back to Code Coverage report</a></p></div></td></tr>
+      <tr><td class="title">Finder/Adapter</td></tr>
+      <tr><td><div align="center"><p><a href="Finder_Adapter.html">Back to Code Coverage report</a></p></div></td></tr>
       <tr><td class="ruler"><img src="glass.png" width="3" height="3" alt=""></td></tr>
     </table>
 
@@ -27,7 +27,7 @@
             <h2>Class Coverage Distribution</h2>
             <canvas id="classCoverageDistribution" width="475" height="200"></canvas>
             <script>
-            var ccd = new RGraph.Bar('classCoverageDistribution', [2,0,0,0,0,0,0,0,0,1,0,2]);
+            var ccd = new RGraph.Bar('classCoverageDistribution', [0,0,0,0,0,0,0,0,0,1,0,2]);
             ccd.Set('chart.background.barcolor1', 'white');
             ccd.Set('chart.background.barcolor2', 'white');
             ccd.Set('chart.colors', ['blue']);
@@ -44,7 +44,7 @@
             <h2>Class Complexity</h2>
             <canvas id="classComplexity" width="475" height="200"></canvas>
             <script>
-            var cc = new RGraph.Scatter('classComplexity', [[100,9,"blue","GoogleGeocoding"],[100,2,"blue","GoogleLocation"],[85.7142857143,3,"blue","GoogleGeocodingAdapter"],[0,2,"blue","WeatherAEMETFinder"],[0,0,"blue","WeatherLocation"]]);
+            var cc = new RGraph.Scatter('classComplexity', [[100,9,"blue","GoogleGeocoding"],[100,2,"blue","GoogleLocation"],[85.7142857143,3,"blue","GoogleGeocodingAdapter"]]);
             cc.Set('chart.xmax', 100);
             cc.Set('chart.background.barcolor1', 'white');
             cc.Set('chart.background.barcolor2', 'white');
@@ -68,8 +68,6 @@
           <td valign="top">
             <h2>Least Tested Methods</h2>
             <ul>
-              <li><a href="Finder_WeatherAEMETFinder.php.html#30">WeatherAEMETFinder::getWeatherLocation</a> (0%)</li>
-              <li><a href="Finder_WeatherAEMETFinder.php.html#21">WeatherAEMETFinder::__construct</a> (0%)</li>
               <li><a href="Finder_Adapter_GoogleGeocodingAdapter.php.html#25">GoogleGeocodingAdapter::getWeatherLocation</a> (75%)</li>
 
             </ul>

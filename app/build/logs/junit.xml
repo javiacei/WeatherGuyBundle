@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="Project Test Suite" tests="1" assertions="1" failures="0" errors="0" time="0.002866">
-    <testsuite name="WeatherGuy\Tests\WeatherGuyTest" file="/home/jaceituno/Projects/WeatherGuy/tests/WeatherGuy/WeatherGuyTest.php" namespace="WeatherGuy\Tests" fullPackage="WeatherGuy.Tests" tests="1" assertions="1" failures="0" errors="0" time="0.002866">
-      <testcase name="testExistWeatherInformationMethod" class="WeatherGuy\Tests\WeatherGuyTest" file="/home/jaceituno/Projects/WeatherGuy/tests/WeatherGuy/WeatherGuyTest.php" line="11" assertions="1" time="0.002866"/>
+  <testsuite name="Project Test Suite" tests="3" assertions="1" failures="0" errors="0" time="0.894800">
+    <testsuite name="WeatherGuy\Tests\WeatherGuyTest" file="/home/jaceituno/Projects/WeatherGuy/tests/WeatherGuy/WeatherGuyTest.php" namespace="WeatherGuy\Tests" fullPackage="WeatherGuy.Tests" tests="1" assertions="1" failures="0" errors="0" time="0.002730">
+      <testcase name="testExistWeatherInformationMethod" class="WeatherGuy\Tests\WeatherGuyTest" file="/home/jaceituno/Projects/WeatherGuy/tests/WeatherGuy/WeatherGuyTest.php" line="11" assertions="1" time="0.002730"/>
+    </testsuite>
+    <testsuite name="WeatherGuy\Tests\Adapter\Google\GoogleGeocodingAdapterTest" file="/home/jaceituno/Projects/WeatherGuy/tests/WeatherGuy/Adapter/GoogleGeocodingAdapterTest.php" namespace="WeatherGuy\Tests\Adapter\Google" fullPackage="WeatherGuy.Tests.Adapter.Google" tests="1" assertions="0" failures="0" errors="0" time="0.559740">
+      <testcase name="testGetWeatherLocation" class="WeatherGuy\Tests\Adapter\Google\GoogleGeocodingAdapterTest" file="/home/jaceituno/Projects/WeatherGuy/tests/WeatherGuy/Adapter/GoogleGeocodingAdapterTest.php" line="24" assertions="0" time="0.559740"/>
+    </testsuite>
+    <testsuite name="WeatherGuy\Tests\Adapter\Google\GoogleGeocodingTest" file="/home/jaceituno/Projects/WeatherGuy/tests/WeatherGuy/Adapter/Google/GoogleGeocodingTest.php" namespace="WeatherGuy\Tests\Adapter\Google" fullPackage="WeatherGuy.Tests.Adapter.Google" tests="1" assertions="0" failures="0" errors="0" time="0.332330">
+      <testcase name="testGeocode" class="WeatherGuy\Tests\Adapter\Google\GoogleGeocodingTest" file="/home/jaceituno/Projects/WeatherGuy/tests/WeatherGuy/Adapter/Google/GoogleGeocodingTest.php" line="12" assertions="0" time="0.332330"/>
     </testsuite>
   </testsuite>
 </testsuites>
