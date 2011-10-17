@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Project Test Suite" tests="1" assertions="1" failures="0" errors="0" time="0.002866">
+    <testsuite name="WeatherGuy\Tests\WeatherGuyTest" file="/home/jaceituno/Projects/WeatherGuy/tests/WeatherGuy/WeatherGuyTest.php" namespace="WeatherGuy\Tests" fullPackage="WeatherGuy.Tests" tests="1" assertions="1" failures="0" errors="0" time="0.002866">
+      <testcase name="testExistWeatherInformationMethod" class="WeatherGuy\Tests\WeatherGuyTest" file="/home/jaceituno/Projects/WeatherGuy/tests/WeatherGuy/WeatherGuyTest.php" line="11" assertions="1" time="0.002866"/>
+    </testsuite>
+  </testsuite>
+</testsuites>
