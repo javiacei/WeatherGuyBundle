@@ -10,8 +10,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ImportAemetWeatherCommand extends ContainerAwareCommand
 {
-    const AEMET_FTP_SERVER = "ftpdatos.aemet.es";
-    const AEMET_WEATHER_PATH = "series_climatologicas/valores_diarios/anual";
+    const AEMET_FTP_SERVER      = "ftpdatos.aemet.es";
+    const AEMET_WEATHER_PATH    = "series_climatologicas/valores_diarios/anual";
     
     protected function configure()
     {
@@ -31,48 +31,14 @@ EOT
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $conn = ftp_connect(self::AEMET_FTP_SERVER);
-        if (false === ftp_login($conn, 'anonymous', 'email@email.com')) {
-            ftp_close($conn);
-            $output->writeln("<error>Connection refused</error>");
-            return;
-        }
-        
-        $years = $input->getArgument('year');
-        foreach($years as $year) {
-            $output->writeln("<info>Importing Aemet weather information of year $year ...</info>");
-            
-            $fileLocalName = $year . ".CSV.gz";
-            $handle = fopen(__DIR__ . '/../TemporalData/' .  $fileLocalName, 'w');
-            
-            $fileRemoteName = self::AEMET_WEATHER_PATH . '/' . $fileLocalName;
-            $output->writeln("<info>Downloading year $year ...</info>");
-            if (true === ftp_fget($conn, $handle, $fileRemoteName, FTP_BINARY)) {
-                $output->writeln("<info>Year $year downloaded.</info>");
-            }
-            fclose($handle);
-
-            $output->writeln("<info>Decompressing year $year.</info>");
-            $uncompressFile = gzopen(__DIR__ . '/../TemporalData/' .  $fileLocalName, 'rb');
-            if (false === $uncompressFile) {
-                $output->writeln("<error>ZipArchive error</error>");
-                return;
-            }
-            $outFile = fopen(__DIR__ . '/../TemporalData/' . $year . '.csv', 'wb');
-            
-            // Keep repeating until the end of the input file
-            while(!gzeof($uncompressFile)) {
-                // Read buffer-size bytes
-                // Both fwrite and gzread and binary-safe
-                fwrite($outFile, gzread($uncompressFile, 4096));
-            }
-
-            // Files are done, close files
-            fclose($outFile);
-            gzclose($uncompressFile);
-        }
-        
-        ftp_close($conn);
+        $this
+            ->getContainer()
+            ->get('weather.guy.aemet.remote')
+            ->downloadDailyWeatherTo(
+                $input->getArgument('year'),    // years
+                __DIR__ . '/../TemporalData'    // temporal directory
+            )
+        ;
     }
 
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="weather.guy.finder.class">Ideup\WeatherGuyBundle\WeatherGuy\Finder\AEMETFinder</parameter>
+        <parameter key="weather.guy.finder.geocoding.class">Ideup\WeatherGuyBundle\WeatherGuy\Finder\Adapter\GoogleGeocodingAdapter</parameter>
+    </parameters>
+
+    <services>
+        <service id="weather.guy.finder.geocoding" class="%weather.guy.finder.geocoding.class%">
+        </service>
+        
+        <service id="weather.guy.finder" class="%weather.guy.finder.class%">
+            <argument type="service" id="weather.guy.finder.geocoding" />
+        </service>
+    </services>
+
+</container>

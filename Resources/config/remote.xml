@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="weather.guy.aemet.remote.class">Ideup\WeatherGuyBundle\WeatherGuy\Finder\Remote\AemetRemote</parameter>
+        <parameter key="weather.guy.aemet.remote.server">ftpdatos.aemet.es</parameter>
+        <parameter key="weather.guy.aemet.remote.path">series_climatologicas/valores_diarios/anual</parameter>
+    </parameters>
+
+    <services>
+        <service id="weather.guy.aemet.remote" class="%weather.guy.aemet.remote.class%">
+            <argument>%weather.guy.aemet.remote.server%</argument>
+            <argument>%weather.guy.aemet.remote.path%</argument>
+        </service>
+    </services>
+
+</container>
