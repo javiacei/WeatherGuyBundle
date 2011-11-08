@@ -3,12 +3,14 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 namespace Ideup\WeatherGuyBundle\WeatherGuy\Finder\Adapter\Google;
 
+use Ideup\WeatherGuyBundle\WeatherGuy\Finder\Adapter\IGeocodingLocation;
+
 /**
  * Description of GoogleLocation
  *
  * @author Fco Javier Aceituno <javier.aceituno@ideup.com>
  */
-class GoogleLocation
+class GoogleLocation implements IGeocodingLocation
 {
     const LOCALITY = 'locality';
     const CITY = 'administrative_area_level_2'; // TODO
@@ -24,7 +26,7 @@ class GoogleLocation
     
     public $locality;
     
-    // TODO: refactor
+    // TODO: Redo
     public function __construct(\stdClass $data)
     {
         // Formatted Address
@@ -36,11 +38,17 @@ class GoogleLocation
             return in_array($localityType, $addressComponent->types);
         };
         
-        $addressComponent = array_pop(array_filter(
+        $addressComponent = array_filter(
             $data->address_components, $localityClosure
-        ));
+        );
+        $addressComponent = array_pop($addressComponent);
 
-        $this->locality = $addressComponent->long_name;
+        if ($addressComponent) {
+            $this->locality = $addressComponent->long_name;
+        } else {
+            // Natural feature
+            $this->locality = $data->address_components[0];
+        }
         
         // City
         $cityType = self::CITY;
@@ -48,11 +56,17 @@ class GoogleLocation
             return in_array($cityType, $addressComponent->types);
         };
         
-        $addressComponent = array_pop(array_filter(
+        $addressComponent = array_filter(
             $data->address_components, $cityClosure
-        ));
-
-        $this->city = $addressComponent->long_name;
+        );
+        $addressComponent = array_pop($addressComponent);
+        
+        if ($addressComponent) {
+            $this->city = $addressComponent->long_name;
+        } else {
+            // Natural feature
+            $this->city = $data->address_components[0];
+        }
         
         // Country
         $countryType = self::COUNTRY;
@@ -60,9 +74,10 @@ class GoogleLocation
             return in_array($countryType, $addressComponent->types);
         };
         
-        $addressComponent = array_pop(array_filter(
+        $addressComponent = array_filter(
             $data->address_components, $countryClosure
-        ));
+        );
+        $addressComponent = array_pop($addressComponent);
 
         $this->country = $addressComponent->long_name;
         
@@ -71,5 +86,15 @@ class GoogleLocation
             'latitude'  => $data->geometry->location->lat,
             'longitude' => $data->geometry->location->lng,
         );
+    }
+    
+    public function getLatitude()
+    {
+        return $this->position['latitude'];
+    }
+    
+    public function getLongitude()
+    {
+        return $this->position['longitude'];
     }
 }

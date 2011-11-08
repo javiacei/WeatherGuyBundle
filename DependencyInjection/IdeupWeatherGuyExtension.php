@@ -26,5 +26,6 @@ class IdeupWeatherGuyExtension extends Extension
         $loader->load('finder.xml');
         $loader->load('weather.xml');
         $loader->load('remote.xml');
+        $loader->load('orm.xml');
     }
 }

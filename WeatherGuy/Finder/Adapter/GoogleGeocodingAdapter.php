@@ -22,6 +22,11 @@ class GoogleGeocodingAdapter implements IGeocodingAdapter
         $this->googleGeolocation = new GoogleGeocoding();
     }
     
+    /**
+     *
+     * @param string $address
+     * @return Ideup\WeatherGuyBundle\WeatherGuy\Finder\Adapter\IWeatherLocation 
+     */
     public function getLocation($address)
     {
         $locations = $this->googleGeolocation->geocodeAddress($address);

@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="weather.guy.class">Ideup\WeatherGuyBundle\WeatherGuy\WeatherGuy</parameter>
+        
     </parameters>
 
     <services>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Ideup\WeatherGuyBundle\Entity\WeatherStation" table="weather_guy_weather_station">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        
+        <field name="name" column="name" type="string" unique="true"/>
+
+        <field name="latitude" column="latitude" type="float" unique="true"/>
+
+        <field name="longitude" column="longitude" type="float" unique="true" />
+
+        <field name="city" column="city" type="string" length="255" />
+
+        <field name="locality" column="locality" type="string" length="255" />
+        
+        <field name="country" column="country" type="string" length="255" />
+        
+        <one-to-many field="climatologicalValues" target-entity="WeatherInformation" mapped-by="station" />
+    
+    </entity>
+
+</doctrine-mapping>

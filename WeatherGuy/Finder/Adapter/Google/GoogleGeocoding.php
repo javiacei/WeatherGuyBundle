@@ -36,7 +36,7 @@ class GoogleGeocoding
         
         $parameters = $this->getParameters();
         foreach ($parameters as $name => $value) {
-            $htmlParams .= $name . '=' . str_replace(" ", '+', $value) .$glue;
+            $htmlParams .= $name . '=' . str_replace(" ", '+', $value) . $glue;
         }
         
         return substr($htmlParams, 0, -strlen($glue));
@@ -50,6 +50,7 @@ class GoogleGeocoding
     private function geocode()
     {
         $url = str_replace("parameters", $this->getHtmlParameters(), self::GOOGLE_SERVICE_URL);
+        echo $url . "\n";
         
          // create curl resource 
         $ch = curl_init(); 
