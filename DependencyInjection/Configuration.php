@@ -28,12 +28,6 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('ideup_weather_guy');
 
-        $rootNode
-            ->children()
-                ->scalarNode('finder_class')->isRequired()->cannotBeEmpty()->end()
-            ->end()
-        ;
-
         return $treeBuilder;
     }
 }

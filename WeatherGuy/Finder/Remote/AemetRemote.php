@@ -32,6 +32,10 @@ class AemetRemote
     
     public function connect()
     {
+        if (null !== $this->conn) {
+            return $this->conn;
+        }
+        
         $this->conn = ftp_connect($this->getServer());
         if (false === ftp_login($this->conn, self::FTP_SERVER_USER, self::FTP_SERVER_MAIL)) {
             ftp_close($conn);
@@ -46,45 +50,42 @@ class AemetRemote
         return ftp_close($this->conn);
     }
     
-    public function downloadDailyWeatherTo($years, $temporalDirectory)
+    public function downloadDailyWeatherTo($year, $temporalDirectory, $compressDelete = true)
     {
-        $this->connect();
-        
-        if (false === is_array($years)) {
-            $years = array($years);
-        }
-        
-        foreach($years as $year) {
-            $fileLocalName = $year . ".CSV.gz";
-            $fileRemoteName = $this->getPath() . '/' . $fileLocalName;
-            
-            $handle = fopen($temporalDirectory . '/' . $fileLocalName, 'w');
-            if (false === ftp_fget($this->conn, $handle, $fileRemoteName, FTP_BINARY)) {
-                fclose($handle);
-                throw new \Exception("Error downloading year '$year'.");
-            }
+        $fileLocalName = $year . ".CSV.gz";
+        $fileRemoteName = $this->getPath() . '/' . $fileLocalName;
+
+        $handle = fopen($temporalDirectory . '/' . $fileLocalName, 'w');
+        if (false === ftp_fget($this->conn, $handle, $fileRemoteName, FTP_BINARY)) {
             fclose($handle);
+            throw new \Exception("Error downloading year '$year'.");
+        }
+        fclose($handle);
 
-            $uncompressFile = gzopen($temporalDirectory . '/' .  $fileLocalName, 'rb');
-            if (false === $uncompressFile) {
-                throw new \Exception("Error decompressing year '$year'.");
-            }
-            $outFile = fopen($temporalDirectory . '/' . $year . '.csv', 'wb');
-            
-            // Keep repeating until the end of the input file
-            while(!gzeof($uncompressFile)) {
-                // Read buffer-size bytes
-                // Both fwrite and gzread and binary-safe
-                fwrite($outFile, gzread($uncompressFile, 4096));
-            }
+        $compressFilename = $temporalDirectory . '/' .  $fileLocalName;
+        $compressFile = gzopen($compressFilename, 'rb');
+        if (false === $compressFile) {
+            throw new \Exception("Error decompressing year '$year'.");
+        }
+        $outFilename = $temporalDirectory . '/' . $year . '.csv';
+        $outFile = fopen($outFilename, 'wb');
 
-            // Files are done, close files
-            fclose($outFile);
-            gzclose($uncompressFile);
+        // Keep repeating until the end of the input file
+        while(!gzeof($compressFile)) {
+            // Read buffer-size bytes
+            // Both fwrite and gzread and binary-safe
+            fwrite($outFile, gzread($compressFile, 4096));
+        }
+
+        // Files are done, close files
+        fclose($outFile);
+        gzclose($compressFile);
+        
+        if (true === $compressDelete) {
+            unlink($compressFilename);
         }
         
-        $this->disconnect();
-        
-        return true;
+        // TODO: Delete uncompressFile
+        return $outFilename;
     }
 }
