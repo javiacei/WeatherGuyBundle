@@ -14,7 +14,9 @@ use
  * This information is solely responsible for how the different configuration
  * sections are normalized, and merged.
  *
- * @author Fco Javier Aceituno <javier.aceituno@ideup.com>
+ * @package IdeupWeatherGuyBundle
+ * @subpackage DependencyInjection
+ * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  */
 class Configuration implements ConfigurationInterface
 {    

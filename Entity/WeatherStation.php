@@ -1,13 +1,12 @@
 <?php
 
-/*
- * This file is part of the WeatherGuyBundle package.
- *
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+/**
+ * Description of WeatherStation
+ * 
+ * @package IdeupWeatherGuyBundle
+ * @subpackage Entity
+ * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  */
-
 namespace Ideup\WeatherGuyBundle\Entity;
 
 use Ideup\WeatherGuyBundle\WeatherGuy\Finder\WeatherStation as AbstractStation;

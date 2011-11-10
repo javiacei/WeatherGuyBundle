@@ -15,7 +15,7 @@ use Symfony\Component\Config\Definition\Processor;
  * 
  * @package IdeupWeatherGuyBundle
  * @subpackage DependencyInjection
- * @author Francisco Javier Aceituno <javier.aceituno@ideup.com>
+ * @author Francisco Javier Aceituno <fco.javier.aceituno@gmail.com>
  */
 class IdeupWeatherGuyExtension extends Extension
 {

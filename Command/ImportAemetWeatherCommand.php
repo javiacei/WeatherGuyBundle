@@ -17,6 +17,8 @@ use
 /**
  * Description of ImportAemetWeatherCommand
  *
+ * @package IdeupWeatherGuyBundle
+ * @subpackage Command
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  */
 class ImportAemetWeatherCommand extends ContainerAwareCommand

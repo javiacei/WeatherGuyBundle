@@ -10,7 +10,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Description of DownloadAemetWeatherCommand
- *
+ * 
+ * @package IdeupWeatherGuyBundle
+ * @subpackage Command
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  */
 class DownloadAemetWeatherCommand extends ContainerAwareCommand

@@ -5,8 +5,7 @@ namespace Ideup\WeatherGuyBundle\WeatherGuy\Finder;
 
 use 
     Doctrine\ORM\EntityManager,
-        
-    Ideup\WeatherGuyBundle\WeatherGuy\Finder\WeatherInformation
+    Ideup\WeatherGuyBundle\Model\WeatherInformation
 ;
 
 /**
