@@ -50,7 +50,6 @@ class GoogleGeocoding
     private function geocode()
     {
         $url = str_replace("parameters", $this->getHtmlParameters(), self::GOOGLE_SERVICE_URL);
-        echo $url . "\n";
         
          // create curl resource 
         $ch = curl_init(); 

@@ -26,6 +26,11 @@ abstract class WeatherStation
     
     public $climatologicalValues;
     
+    public function getName()
+    {
+        return $this->name;
+    }
+    
     public function fromArray(array $data)
     {
         foreach ($data as $field => $value) {

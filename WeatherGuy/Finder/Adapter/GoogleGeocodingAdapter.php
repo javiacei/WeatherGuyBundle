@@ -37,7 +37,9 @@ class GoogleGeocodingAdapter implements IGeocodingAdapter
         }
         
         // Returns first result (more important).
-        return reset($locations);
+        $googleLocation = reset($locations);
+        
+        return $googleLocation;
     }
 
 }

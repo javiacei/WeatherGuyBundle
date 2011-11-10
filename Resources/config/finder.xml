@@ -9,6 +9,7 @@
         <parameter key="weather.guy.finder.geocoding.class">Ideup\WeatherGuyBundle\WeatherGuy\Finder\Adapter\GoogleGeocodingAdapter</parameter>
         
         <parameter key="weather.guy.station.manager.class">Ideup\WeatherGuyBundle\WeatherGuy\Finder\WeatherStationManager</parameter>
+        <parameter key="weather.guy.information.manager.class">Ideup\WeatherGuyBundle\WeatherGuy\Finder\WeatherInformationManager</parameter>
     </parameters>
 
     <services>
@@ -22,6 +23,10 @@
         <service id="weather.guy.finder.station.manager" class="%weather.guy.station.manager.class%">
             <argument type="service" id="weather.guy.entity_manager" />
             <argument type="service" id="weather.guy.finder.geocoding" />
+        </service>
+        
+        <service id="weather.guy.finder.information.manager" class="%weather.guy.information.manager.class%">
+            <argument type="service" id="weather.guy.entity_manager" />
         </service>
     </services>
 

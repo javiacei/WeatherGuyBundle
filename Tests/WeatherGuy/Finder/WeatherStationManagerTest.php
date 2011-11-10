@@ -17,6 +17,8 @@ class WeatherStationManagerTest extends WebTestCase
     
     const LONGITUDE_TEST = -4.0237125;
     
+    const NAME_NEAREST_STATION = 2462;
+    
     protected $stationManager;
     
     protected function setUp()
@@ -59,5 +61,14 @@ class WeatherStationManagerTest extends WebTestCase
         $this->assertTrue($station instanceof WeatherStation);
         $this->assertTrue($station->latitude == self::LATITUDE_TEST);
         $this->assertTrue($station->longitude == self::LONGITUDE_TEST);
+    }
+    
+    public function testFindStationNearestTo()
+    {
+        $stationManager = static::createClient()->getContainer()->get('weather.guy.finder.station.manager');
+        
+        $station = $stationManager->findStationNearestTo('Alpedrete Madrid, España');
+
+        $this->assertTrue($station->getName() == self::NAME_NEAREST_STATION);
     }
 }

@@ -10,21 +10,17 @@
             <generator strategy="AUTO"/>
         </id>
         
-        <field name="day" column="day" type="datetime" />
+        <field name="date" column="date" type="datetime" />
         
-        <field name="maxTemperature" column="max_temperature" type="float" />
+        <field name="maxTemperature" column="max_temperature" type="object" />
         
-        <field name="maxTemperatureMoment" column="max_temperature_datetime" type="datetime" />
+        <field name="minTemperature" column="min_temperature" type="object" />
         
-        <field name="minTemperature" column="min_temperature" type="float" />
+        <field name="avgTemperature" column="avg_temperature" type="object" />
         
-        <field name="minTemperatureMoment" column="min_temperature_datetime" type="datetime" />
+        <field name="precipitation" column="precipitation" type="object" />
         
-        <field name="avgTemperature" column="avg_temperature" type="float" />
-        
-        <field name="precipitation" column="precipitation" type="float" />
-        
-        <field name="sunshine" column="sunshine" type="float" />
+        <field name="sunshine" column="sunshine" type="object" />
         
         <many-to-one field="station" target-entity="WeatherStation" inversed-by="climatologicalValues">
             <join-column name="station_id" referenced-column-name="id" />

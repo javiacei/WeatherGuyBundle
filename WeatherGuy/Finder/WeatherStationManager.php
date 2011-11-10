@@ -70,6 +70,11 @@ class WeatherStationManager
         $this->getEntityManager()->flush();
     }
     
+    public function findStationByName($name)
+    {
+        return $this->getRepository()->findOneBy(array('name' => $name));
+    }
+    
     public function findStationsBy(array $criteria)
     {
         return $this->getRepository()->findBy($criteria);
@@ -78,5 +83,31 @@ class WeatherStationManager
     public function existStationBy(array $criteria)
     {
         return count($this->findStationsBy($criteria)) > 0;
+    }
+    
+    public function findStationNearestTo($address, $distance = 50)
+    {
+        $location = $this->geocoding->getLocation($address);
+        
+        $rsm = new \Doctrine\ORM\Query\ResultSetMapping;
+        $rsm->addEntityResult('IdeupWeatherGuyBundle:WeatherStation', 'ws');
+        $rsm->addScalarResult('id', 'id');
+        
+        $query = $this
+            ->getEntityManager()->createNativeQuery(
+                '   SELECT ws.id as id, SQRT(
+                        POW(69.1 * (ws.latitude - :latitude), 2) +
+                        POW(69.1 * (:longitude - ws.longitude) * COS(ws.latitude / 57.3), 2)
+                    ) AS distance
+                    FROM weather_guy_weather_station ws HAVING distance < :distance ORDER BY distance LIMIT 0,1;
+                ', $rsm)
+            ->setParameters(array(
+                'latitude'  => $location->getLatitude(),
+                'longitude' => $location->getLongitude(),
+                'distance'  => $distance
+            ))
+        ;
+        
+        return $this->getRepository()->findOneBy($query->getSingleResult());
     }
 }
