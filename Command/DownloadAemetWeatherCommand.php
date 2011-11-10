@@ -8,8 +8,16 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Description of DownloadAemetWeatherCommand
+ *
+ * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ */
 class DownloadAemetWeatherCommand extends ContainerAwareCommand
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this
@@ -23,6 +31,9 @@ EOT
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $years  = $input->getArgument('year');
@@ -42,5 +53,4 @@ EOT
         $output->writeln('');
         $output->writeln("<info>Downloading process completed.</info>");
     }
-
 }

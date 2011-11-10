@@ -14,6 +14,11 @@ use
     Ideup\WeatherGuyBundle\WeatherGuy\Finder\Unit\Hours
 ;
 
+/**
+ * Description of ImportAemetWeatherCommand
+ *
+ * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ */
 class ImportAemetWeatherCommand extends ContainerAwareCommand
 {
     protected $csvStructure = array(
@@ -41,6 +46,9 @@ class ImportAemetWeatherCommand extends ContainerAwareCommand
         'minPressureHH'
     );
     
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this
@@ -53,7 +61,13 @@ EOT
         );
     }
     
-    private function prepareRow($row)
+    /**
+     * This method encodes csv row data into UTF-8
+     * 
+     * @param array $row. Aemet csv row obtained from (ftp://ftpdatos.aemet.es/series_climatologicas/valores_diarios/anual/)
+     * @return array 
+     */
+    private function prepareRow(array $row)
     {
         if (count($this->csvStructure) !== count($row)) {
             return null;
@@ -72,12 +86,25 @@ EOT
         );
     }
     
-    protected function getDateOf(array $aemetCsvRow)
+    /**
+     * This method return a DateTime object from aemet csv row
+     * 
+     * @param array $aemetCsvRow
+     * @return \DateTime 
+     */
+    private function getDateOf(array $aemetCsvRow)
     {
         return new \DateTime("{$aemetCsvRow['day']}-{$aemetCsvRow['month']}-{$aemetCsvRow['year']}");
     }
     
-    protected function getTemperatureOf(array $aemetCsvRow, $type)
+    /**
+     * Return Measure (temperature) object obtained from Aemet csv row
+     * 
+     * @param array $aemetCsvRow
+     * @param type $type
+     * @return Celsius 
+     */
+    private function getTemperatureOf(array $aemetCsvRow, $type)
     {
         if (!in_array($type, array('max', 'min', 'avg'))) {
             return null;
@@ -98,16 +125,31 @@ EOT
         return new Celsius($value, $moment);
     }
     
-    protected function getPrecipitationOf(array $aemetCsvRow)
+    /**
+     * Return Measure (precipitation) object obtained from Aemet csv row
+     * 
+     * @param array $aemetCsvRow
+     * @return Millimeters 
+     */
+    private function getPrecipitationOf(array $aemetCsvRow)
     {
         return new Millimeters((float)$aemetCsvRow['precipitation']);
     }
     
+    /**
+     * Return Measure (sunshine) object obtained from Aemet csv row
+     * 
+     * @param array $aemetCsvRow
+     * @return Hours 
+     */
     protected function getSunshineOf(array $aemetCsvRow)
     {
         return new Hours($aemetCsvRow['sunshine']);
     }
-
+    
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $stationManager = $this->getContainer()->get('weather.guy.finder.station.manager');
@@ -157,5 +199,4 @@ EOT
             $output->writeln("Weather information for station <info>'{$info['name']}'</info> in <info>'{$info['locality']}, {$info['city']}'</info> at <info>{$date->format('d-m-Y')}</info> <comment>imported</comment>");
         }
     }
-
 }

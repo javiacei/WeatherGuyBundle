@@ -16,8 +16,8 @@ class AemetRemote
     
     public function __construct($server, $path)
     {
-        $this->server               = $server;
-        $this->path                 = $path;
+        $this->server   = $server;
+        $this->path     = $path;
     }
     
     public function getServer()
