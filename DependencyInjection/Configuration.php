@@ -27,6 +27,13 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('ideup_weather_guy');
+        
+        $rootNode
+            ->children()
+                ->scalarNode('ftp_server')->defaultValue('ftpdatos.aemet.es')->end()
+                ->scalarNode('climatological_year_path')->defaultValue('series_climatologicas/valores_diarios/anual')->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }

@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Definition\Processor;
 
 /**
  * IdeupWeatherGuy Dependency Injection Extension
@@ -20,10 +21,18 @@ class IdeupWeatherGuyExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
+        $processor = new Processor();
+        $configuration = new Configuration();
+
+        $config = $processor->processConfiguration($configuration, $configs); 
+        
         // registering services
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('finder.xml');
         $loader->load('remote.xml');
         $loader->load('orm.xml');
+        
+        $container->setParameter('ftp_server', $config['ftp_server']);
+        $container->setParameter('climatological_year_path', $config['climatological_year_path']);
     }
 }

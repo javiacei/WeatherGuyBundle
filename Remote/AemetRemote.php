@@ -1,6 +1,6 @@
 <?php
 
-namespace Ideup\WeatherGuyBundle\WeatherGuy\Finder\Remote;
+namespace Ideup\WeatherGuyBundle\Remote;
 
 class AemetRemote
 {
