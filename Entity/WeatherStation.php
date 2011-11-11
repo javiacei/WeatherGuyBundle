@@ -9,7 +9,7 @@
  */
 namespace Ideup\WeatherGuyBundle\Entity;
 
-use Ideup\WeatherGuyBundle\WeatherGuy\Finder\WeatherStation as AbstractStation;
+use Ideup\WeatherGuyBundle\Model\WeatherStation as AbstractStation;
 
 class WeatherStation extends AbstractStation
 {

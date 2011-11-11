@@ -1,13 +1,14 @@
 <?php
 
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
-namespace Ideup\WeatherGuyBundle\WeatherGuy\Finder\Adapter\Google;
+namespace Ideup\WeatherGuyBundle\Geocoding\Google;
 
 /**
  * Description of GoogleGeocoding
  *
- * @author Fco Javier Aceituno <javier.aceituno@ideup.com>
+ * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  */
+
 class GoogleGeocoding
 {
     const OK = "OK";
@@ -16,20 +17,21 @@ class GoogleGeocoding
     
     protected $parameters = array();
     
-    public function getDefaultParameters()
+    /**
+     *
+     * @param array $options 
+     */
+    public function __construct(array $options)
     {
-        return array(
-            'sensor'    => "false",
-            'language'  => "es"
-        );
+        $this->setParameters($options);
     }
     
-    public function getParameters()
-    {
-        return array_merge($this->getDefaultParameters(), $this->parameters);
-    }
-    
-    public function getHtmlParameters()
+    /**
+     * This method returns params formatted (html)
+     * 
+     * @return string 
+     */
+    protected function getHtmlParameters()
     {
         $glue = "&";
         $htmlParams = "";
@@ -42,14 +44,31 @@ class GoogleGeocoding
         return substr($htmlParams, 0, -strlen($glue));
     }
     
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+    
+    public function setParameters(array $params)
+    {
+        foreach ($params as $pName => $pValue) {
+            $this->setParameter($pName, $pValue);
+        }
+    }
+    
     public function setParameter($name, $value)
     {
         $this->parameters[$name] = $value;
     }
     
+    public function getUrl()
+    {
+        return str_replace("parameters", $this->getHtmlParameters(), self::GOOGLE_SERVICE_URL);
+    }
+    
     private function geocode()
     {
-        $url = str_replace("parameters", $this->getHtmlParameters(), self::GOOGLE_SERVICE_URL);
+        $url = $this->getUrl();
         
          // create curl resource 
         $ch = curl_init(); 
@@ -71,7 +90,7 @@ class GoogleGeocoding
         
         if (self::OK === $data->status) {
             foreach($data->results as $r) {
-                $locations[] = new GoogleLocation($r);
+                $locations[] = $r;
             }
         }
         

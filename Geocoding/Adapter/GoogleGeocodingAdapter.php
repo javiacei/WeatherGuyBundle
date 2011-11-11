@@ -2,16 +2,18 @@
 
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 
-namespace Ideup\WeatherGuyBundle\WeatherGuy\Finder\Adapter;
+namespace Ideup\WeatherGuyBundle\Geocoding\Adapter;
 
 use 
-    Ideup\WeatherGuyBundle\WeatherGuy\Finder\Adapter\Google\GoogleGeocoding
+    Ideup\WeatherGuyBundle\Geocoding\IGeocodingAdapter,
+    Ideup\WeatherGuyBundle\Geocoding\Google\GoogleGeocoding,
+    Ideup\WeatherGuyBundle\Geocoding\GeocodingLocation
 ;
 
 /**
  * Description of GoogleGeolocationAdapter
  *
- * @author Fco Javier Aceituno <javier.aceituno@ideup.com>
+ * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  */
 class GoogleGeocodingAdapter implements IGeocodingAdapter
 {
@@ -19,13 +21,18 @@ class GoogleGeocodingAdapter implements IGeocodingAdapter
     
     public function __construct()
     {
-        $this->googleGeolocation = new GoogleGeocoding();
+        $geocodingOptions = array(
+            'sensor'    => "false",
+            'language'  => "es"
+        );
+        
+        $this->googleGeolocation = new GoogleGeocoding($geocodingOptions);
     }
     
     /**
      *
      * @param string $address
-     * @return Ideup\WeatherGuyBundle\WeatherGuy\Finder\Adapter\IWeatherLocation 
+     * @return GeocodingLocation
      */
     public function getLocation($address)
     {
@@ -39,7 +46,10 @@ class GoogleGeocodingAdapter implements IGeocodingAdapter
         // Returns first result (more important).
         $googleLocation = reset($locations);
         
-        return $googleLocation;
+        return new GeocodingLocation(
+            $googleLocation->geometry->location->lat,
+            $googleLocation->geometry->location->lng
+        );
     }
 
 }

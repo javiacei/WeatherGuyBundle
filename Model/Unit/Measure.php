@@ -1,7 +1,7 @@
 <?php
 
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
-namespace Ideup\WeatherGuyBundle\WeatherGuy\Finder\Unit;
+namespace Ideup\WeatherGuyBundle\Model\Unit;
 
 /**
  * Description of Measure

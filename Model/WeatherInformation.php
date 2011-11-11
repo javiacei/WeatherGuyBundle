@@ -8,7 +8,7 @@ namespace Ideup\WeatherGuyBundle\Model;
  *
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  */
-class WeatherInformation
+abstract class WeatherInformation
 {
     public $id;
     public $date;

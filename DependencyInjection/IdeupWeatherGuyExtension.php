@@ -28,11 +28,13 @@ class IdeupWeatherGuyExtension extends Extension
         
         // registering services
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('finder.xml');
+        $loader->load('weather.xml');
         $loader->load('remote.xml');
         $loader->load('orm.xml');
         
         $container->setParameter('ftp_server', $config['ftp_server']);
         $container->setParameter('climatological_year_path', $config['climatological_year_path']);
+        
+        $container->setParameter('adapter_class', $config['adapter_class']);
     }
 }

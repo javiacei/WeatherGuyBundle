@@ -2,16 +2,14 @@
 
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 
-namespace Ideup\WeatherGuyBundle\WeatherGuy\Finder\Adapter;
+namespace Ideup\WeatherGuyBundle\Geocoding;
 
 /**
  * Description of IGeocodingAdapter
  * 
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  */
-interface IGeocodingLocation
+interface IGeocodingAdapter
 {
-     public function getLatitude();
-     
-     public function getLongitude();
+     public function getLocation($address);
 }

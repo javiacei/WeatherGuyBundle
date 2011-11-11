@@ -9,9 +9,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use 
-    Ideup\WeatherGuyBundle\WeatherGuy\Finder\Unit\Celsius,
-    Ideup\WeatherGuyBundle\WeatherGuy\Finder\Unit\Millimeters,
-    Ideup\WeatherGuyBundle\WeatherGuy\Finder\Unit\Hours
+    Ideup\WeatherGuyBundle\Model\Unit\Celsius,
+    Ideup\WeatherGuyBundle\Model\Unit\Millimeters,
+    Ideup\WeatherGuyBundle\Model\Unit\Hours
 ;
 
 /**
@@ -154,8 +154,8 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $stationManager = $this->getContainer()->get('weather.guy.finder.station.manager');
-        $infoManager = $this->getContainer()->get('weather.guy.finder.information.manager');
+        $stationManager = $this->getContainer()->get('weather.guy.station.manager');
+        $infoManager = $this->getContainer()->get('weather.guy.information.manager');
         $filename  = $input->getArgument('file');
         
         $file = new \SplFileObject($filename);
@@ -188,6 +188,7 @@ EOT
                 $weatherInfo = $infoManager->create($station, $date);
             } catch (\Exception $exc) {
                 // Weather information for $station at $date exists.
+                
                 continue;
             }
             

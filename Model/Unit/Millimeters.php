@@ -1,21 +1,21 @@
 <?php
 
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
-namespace Ideup\WeatherGuyBundle\WeatherGuy\Finder\Unit;
+namespace Ideup\WeatherGuyBundle\Model\Unit;
 
 /**
- * Description of TemperatureCelsius
+ * Description of Millimeters
  *
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  */
-class Celsius extends Measure
+class Millimeters extends Measure
 {
     /**
      * {@inheritdoc }
      */
     public function getUnit()
     {
-        return 'ºC';
+        return 'mm';
     }
 }
 

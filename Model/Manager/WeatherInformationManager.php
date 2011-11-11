@@ -1,11 +1,14 @@
 <?php
 
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
-namespace Ideup\WeatherGuyBundle\WeatherGuy\Finder;
+namespace Ideup\WeatherGuyBundle\Model\Manager;
 
 use 
     Doctrine\ORM\EntityManager,
-    Ideup\WeatherGuyBundle\Model\WeatherInformation
+    Ideup\WeatherGuyBundle\Entity\WeatherInformation,
+    
+    Ideup\WeatherGuyBundle\Model\WeatherStation,
+    Ideup\WeatherGuyBundle\Model\IWeatherEngine
 ;
 
 /**
@@ -13,7 +16,7 @@ use
  *
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  */
-class WeatherInformationManager
+class WeatherInformationManager implements IWeatherEngine
 {
     protected $em;
     
@@ -34,7 +37,7 @@ class WeatherInformationManager
     
     public function create(WeatherStation $station, \DateTime $date)
     {
-        $weatherInfo = $this->findInformationByStationAndDate($station, $date);   
+        $weatherInfo = $this->findWeatherInformation($station, $date);   
         
         if (null !== $weatherInfo) {
             throw new \Exception("Weather information of station {$station->name} at {$date->format('d-m-Y')} exists.");
@@ -60,7 +63,12 @@ class WeatherInformationManager
         $this->getEntityManager()->flush();
     }
     
-    public function findInformationByStationAndDate(WeatherStation $station, \DateTime $date)
+    public function findInformationBy(array $criteria)
+    {
+        return $this->getRepository()->findBy($criteria);
+    }
+
+    public function findWeatherInformation(WeatherStation $station, \DateTime $date)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         try {
@@ -80,10 +88,5 @@ class WeatherInformationManager
         }
         
         return $info;
-    }
-    
-    public function findInformationBy(array $criteria)
-    {
-        return $this->getRepository()->findBy($criteria);
     }
 }

@@ -1,12 +1,14 @@
 <?php
 
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
-namespace Ideup\WeatherGuyBundle\WeatherGuy\Finder;
+namespace Ideup\WeatherGuyBundle\Model\Manager;
 
 use 
-    Ideup\WeatherGuyBundle\WeatherGuy\Finder\Adapter\IGeocodingAdapter,
     Doctrine\ORM\EntityManager,
-    Ideup\WeatherGuyBundle\Entity\WeatherStation
+    Ideup\WeatherGuyBundle\Geocoding\IGeocodingAdapter,
+    Ideup\WeatherGuyBundle\Entity\WeatherStation,
+    
+    Ideup\WeatherGuyBundle\Model\IWeatherFinder
 ;
 
 /**
@@ -14,7 +16,7 @@ use
  *
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  */
-class WeatherStationManager
+class WeatherStationManager implements IWeatherFinder
 {
     const DEFAULT_COUNTRY = "España";
     
@@ -84,8 +86,8 @@ class WeatherStationManager
     {
         return count($this->findStationsBy($criteria)) > 0;
     }
-    
-    public function findStationNearestTo($address, $distance = 50)
+
+    public function findWeatherLocation($address, $distance)
     {
         $location = $this->geocoding->getLocation($address);
         

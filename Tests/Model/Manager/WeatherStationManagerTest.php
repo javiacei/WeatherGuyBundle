@@ -2,13 +2,14 @@
 
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 
-namespace Ideup\WeatherGuyBundle\Tests\WeatherGuy\Finder;
+namespace Ideup\WeatherGuyBundle\Tests\Model\Manager;
 
 
 use
     Symfony\Bundle\FrameworkBundle\Test\WebTestCase,
-    Ideup\WeatherGuyBundle\WeatherGuy\Finder\WeatherStationManager,
-    Ideup\WeatherGuyBundle\WeatherGuy\Finder\WeatherStation
+    
+    Ideup\WeatherGuyBundle\Model\WeatherStation,
+    Ideup\WeatherGuyBundle\Model\Manager\WeatherStationManager
 ;
 
 class WeatherStationManagerTest extends WebTestCase
@@ -27,7 +28,7 @@ class WeatherStationManagerTest extends WebTestCase
         $em = $this->getMock('Doctrine\ORM\EntityManager', array(), array(), '', false);
         
         // Location Mock
-        $geoLocation = $this->getMock('Ideup\WeatherGuyBundle\WeatherGuy\Finder\Adapter\IGeocodingLocation');
+        $geoLocation = $this->getMock('Ideup\WeatherGuyBundle\Geocoding\IGeocodingLocation');
         
         $geoLocation
             ->expects($this->any())
@@ -40,7 +41,7 @@ class WeatherStationManagerTest extends WebTestCase
             ->will($this->returnValue(self::LONGITUDE_TEST));
 
         // Geocoding Mock
-        $geocoding = $this->getMock('Ideup\WeatherGuyBundle\WeatherGuy\Finder\Adapter\IGeocodingAdapter');
+        $geocoding = $this->getMock('Ideup\WeatherGuyBundle\Geocoding\IGeocodingAdapter');
         
         $geocoding
             ->expects($this->any())
@@ -53,9 +54,6 @@ class WeatherStationManagerTest extends WebTestCase
     
     public function testCreateWeatherStation()
     {
-//        $stationManager = static::createClient()->getContainer()->get('weather.guy.finder.station.manager');
-//        $station = $stationManager->create('test', 'Alpedrete', 'Madrid');
-        
         $station = $this->stationManager->create('test', 'Alpedrete', 'Madrid');
         
         $this->assertTrue($station instanceof WeatherStation);
@@ -63,12 +61,10 @@ class WeatherStationManagerTest extends WebTestCase
         $this->assertTrue($station->longitude == self::LONGITUDE_TEST);
     }
     
-    public function testFindStationNearestTo()
+    public function testFindWeatherLocation()
     {
-        $stationManager = static::createClient()->getContainer()->get('weather.guy.finder.station.manager');
-        
-        $station = $stationManager->findStationNearestTo('Alpedrete Madrid, España');
-
+        $stationManager = static::createClient()->getContainer()->get('weather.guy.station.manager');
+        $station = $stationManager->findWeatherLocation('Alpedrete Madrid, España');
         $this->assertTrue($station->getName() == self::NAME_NEAREST_STATION);
     }
 }

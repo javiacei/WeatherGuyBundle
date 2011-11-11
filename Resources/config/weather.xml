@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="weather.guy.finder.geocoding.class">%adapter_class%</parameter>
+        
+        <parameter key="weather.guy.station.manager.class">Ideup\WeatherGuyBundle\Model\Manager\WeatherStationManager</parameter>
+        <parameter key="weather.guy.information.manager.class">Ideup\WeatherGuyBundle\Model\Manager\WeatherInformationManager</parameter>
+        <parameter key="weather.guy.class">Ideup\WeatherGuyBundle\Model\WeatherGuy</parameter>
+    </parameters>
+
+    <services>
+        <service id="weather.guy.geocoding" class="%weather.guy.finder.geocoding.class%"></service>
+        
+        <service id="weather.guy.station.manager" class="%weather.guy.station.manager.class%">
+            <argument type="service" id="weather.guy.entity_manager" />
+            <argument type="service" id="weather.guy.geocoding" />
+        </service>
+        
+        <service id="weather.guy.information.manager" class="%weather.guy.information.manager.class%">
+            <argument type="service" id="weather.guy.entity_manager" />
+        </service>
+        
+        <service id="weather.guy" class="%weather.guy.class%">
+            <argument type="service" id="weather.guy.station.manager" />        <!-- Finder -->
+            <argument type="service" id="weather.guy.information.manager" />    <!-- Engine -->
+        </service>
+    </services>
+
+</container>

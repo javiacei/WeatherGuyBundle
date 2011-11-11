@@ -34,9 +34,12 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('ftp_server')->defaultValue('ftpdatos.aemet.es')->end()
                 ->scalarNode('climatological_year_path')->defaultValue('series_climatologicas/valores_diarios/anual')->end()
+                ->scalarNode('adapter_class')->defaultValue('Ideup\WeatherGuyBundle\Geocoding\Adapter\GoogleGeocodingAdapter')->end()
             ->end()
         ;
 
         return $treeBuilder;
     }
+    
+    
 }
