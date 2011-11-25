@@ -12,15 +12,22 @@
         
         <field name="date" column="date" type="datetime" />
         
-        <field name="maxTemperature" column="max_temperature" type="object" />
+        <field name="maxTemperatureValue" column="max_temperature_value" type="float" />
+        <field name="maxTemperatureMoment" column="max_temperature_moment" type="datetime" />
+        <field name="maxTemperatureUnitClass" column="max_temperature_unit_class" type="string" length="256" />
         
-        <field name="minTemperature" column="min_temperature" type="object" />
+        <field name="minTemperatureValue" column="min_temperature_value" type="float" />
+        <field name="minTemperatureMoment" column="min_temperature_moment" type="datetime" />
+        <field name="minTemperatureUnitClass" column="min_temperature_unit_class" type="string" length="256" />
         
-        <field name="avgTemperature" column="avg_temperature" type="object" />
+        <field name="avgTemperatureValue" column="avg_temperature_value" type="float" />
+        <field name="avgTemperatureUnitClass" column="avg_temperature_unit_class" type="string" length="256" />
         
-        <field name="precipitation" column="precipitation" type="object" />
+        <field name="precipitationValue" column="precipitation_value" type="float" />
+        <field name="precipitationUnitClass" column="precipitation_unit_class" type="string" length="256" />
         
-        <field name="sunshine" column="sunshine" type="object" />
+        <field name="sunshineValue" column="sunshine_value" type="float" />
+        <field name="sunshineUnitClass" column="sunshine_unit_class" type="string" length="256" />
         
         <many-to-one field="station" target-entity="WeatherStation" inversed-by="climatologicalValues">
             <join-column name="station_id" referenced-column-name="id" />

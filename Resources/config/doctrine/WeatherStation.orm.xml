@@ -12,9 +12,9 @@
         
         <field name="name" column="name" type="string" unique="true"/>
 
-        <field name="latitude" column="latitude" type="float" unique="true"/>
+        <field name="latitude" column="latitude" type="float" />
 
-        <field name="longitude" column="longitude" type="float" unique="true" />
+        <field name="longitude" column="longitude" type="float" />
 
         <field name="city" column="city" type="string" length="255" />
 
