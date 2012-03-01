@@ -72,23 +72,7 @@ class WeatherInformationManager implements WeatherEngineInterface
 
     public function findWeatherInformation(WeatherStation $station, \DateTime $date)
     {
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        try {
-            $info = $qb
-                ->select('i')
-                ->from('JaviaceiWeatherGuyBundle:WeatherInformation', 'i')
-                ->where('i.date = :date')
-                ->andWhere('i.station = :station_id')
-                ->setParameters(array(
-                    'station_id'    => $station->id,
-                    'date'          => $date
-                ))
-                ->getQuery()->getSingleResult()
-            ;
-        } catch (\Doctrine\ORM\NoResultException $exc) {
-            $info = null;
-        }
-        
+        $info = $this->getRepository()->findInformation($station, $date);
         return $info;
     }
 }

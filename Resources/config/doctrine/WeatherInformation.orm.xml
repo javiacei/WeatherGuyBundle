@@ -4,7 +4,9 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Javiacei\WeatherGuyBundle\Entity\WeatherInformation" table="weather_guy_weather_information">
+    <entity name="Javiacei\WeatherGuyBundle\Entity\WeatherInformation"
+            table="weather_guy_weather_information"
+            repository-class="Javiacei\WeatherGuyBundle\Entity\Repository\WeatherInformationRepository">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>

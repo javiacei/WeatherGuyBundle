@@ -31,7 +31,16 @@ class WeatherStationManager implements WeatherFinderInterface
         $this->geocoding    = $geo;
         $this->em           = $em;
     }
-    
+
+    /**
+     * Creates a new WeatherStation
+     *
+     * @param string $name
+     * @param string $locality
+     * @param string $city
+     * @param string $country
+     * @return \Javiacei\WeatherGuyBundle\Entity\WeatherStation
+     */
     public function create($name, $locality, $city, $country = self::DEFAULT_COUNTRY)
     {
         $address = $locality . " " . $city . ", " . $country;

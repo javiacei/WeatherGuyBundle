@@ -17,7 +17,8 @@ use Doctrine\ORM\AbstractQuery;
  */
 class WeatherStationRepository extends EntityRepository
 {
-    public function findClosestStation(GeocodingLocation $location, $distance){
+    public function findClosestStation(GeocodingLocation $location, $distance)
+    {
         $rsm = new ResultSetMapping;
         $rsm->addEntityResult('JaviaceiWeatherGuyBundle:WeatherStation', 'ws');
         $rsm->addScalarResult('id', 'id');
