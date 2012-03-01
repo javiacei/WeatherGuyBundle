@@ -28,7 +28,7 @@ abstract class Measure
     }
     
     /**
-     * @return float Measure valur
+     * @return float Measure value
      */
     public function getValue()
     {

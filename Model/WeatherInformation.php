@@ -12,14 +12,33 @@ namespace Javiacei\WeatherGuyBundle\Model;
  */
 abstract class WeatherInformation
 {
-    public $id;
-    public $date;
-    public $maxTemperature;
-    public $minTemperature;
-    public $avgTemperature;
-    public $precipitation;
-    public $sunshine;
-    public $station;
+    protected $id;
+    
+    protected $date;
+    
+    // Max temperature
+    protected $maxTemperatureValue;
+    protected $maxTemperatureMoment;
+    protected $maxTemperatureUnitClass;
+    
+    // Min temperature
+    protected $minTemperatureValue;
+    protected $minTemperatureMoment;
+    protected $minTemperatureUnitClass;
+    
+    // Avg temperature
+    protected $avgTemperatureValue;
+    protected $avgTemperatureUnitClass;
+    
+    // Precipitation
+    protected $precipitationValue;
+    protected $precipitationUnitClass;
+    
+    // Sunshine
+    protected $sunshineValue;
+    protected $sunshineUnitClass;
+    
+    protected $station;
     
     public function getId()
     {
@@ -38,52 +57,65 @@ abstract class WeatherInformation
     
     public function setMaxTemperature(Unit\Measure $t)
     {
-        $this->maxTemperature = $t;
+        $this->maxTemperatureValue      = $t->getValue();
+        $this->maxTemperatureUnitClass  = get_class($t);
+        $this->maxTemperatureMoment     = $t->getMoment();
     }
     
     public function getMaxTemperature()
     {
-        return $this->maxTemperature;
+        return new $this->maxTemperatureUnitClass(
+            $this->maxTemperatureValue,
+            $this->maxTemperatureMoment
+        );
     }
     
     public function setMinTemperature(Unit\Measure $t)
     {
-        $this->minTemperature = $t;
+        $this->minTemperatureValue      = $t->getValue();
+        $this->minTemperatureUnitClass  = get_class($t);
+        $this->minTemperatureMoment     = $t->getMoment();
     }
     
     public function getMinTemperature()
     {
-        return $this->minTemperature;
+        return new $this->minTemperatureUnitClass(
+            $this->minTemperatureValue,
+            $this->minTemperatureMoment
+        );
     }
     
     public function setAvgTemperature(Unit\Measure $t)
     {
-        $this->avgTemperature = $t;
+        $this->avgTemperatureValue      = $t->getValue();
+        $this->avgTemperatureUnitClass  = get_class($t);
     }
     
     public function getAvgTemperature()
     {
-        return $this->avgTemperature;
+        return new $this->avgTemperatureUnitClass($this->avgTemperatureValue);
     }
     
     public function setPrecipitation(Unit\Measure $p)
     {
-        $this->precipitation = $p;
+        $this->precipitationValue       = $p->getValue();
+        $this->precipitationUnitClass   = get_class($p);
     }
     
     public function getPrecipitation()
     {
-        return $this->precipitation;
+        return new $this->precipitationUnitClass($this->precipitationValue);
     }
     
     public function setSunshine(Unit\Measure $s)
     {
-        $this->sunshine = $s;
+        $this->sunshineValue        = $s->getValue();
+        $this->sunshineUnitClass    = get_class($s);
     }
     
     public function getSunshine()
     {
-        return $this->sunshine;
+        return new $this->sunshineUnitClass($this->sunshineValue);
     }
     
     public function setStation(WeatherStation $weatherStation)
