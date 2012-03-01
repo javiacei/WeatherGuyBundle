@@ -14,9 +14,10 @@ use
  * This information is solely responsible for how the different configuration
  * sections are normalized, and merged.
  *
- * @package JaviaceiLyricsBundle
+ * @package JaviaceiWeatherGuyBundle
  * @subpackage DependencyInjection
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @author Ignacio Velázquez Gómez <ivelazquez85@gmail.com>
  * @copyright Fco Javier Aceituno
  */
 class Configuration implements ConfigurationInterface
@@ -36,6 +37,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('ftp_server')->defaultValue('ftpdatos.aemet.es')->end()
                 ->scalarNode('climatological_year_path')->defaultValue('series_climatologicas/valores_diarios/anual')->end()
                 ->scalarNode('adapter_class')->defaultValue('Javiacei\WeatherGuyBundle\Geocoding\Adapter\GoogleGeocodingAdapter')->end()
+                ->scalarNode('distance_range')->defaultValue('50')->end()
             ->end()
         ;
 

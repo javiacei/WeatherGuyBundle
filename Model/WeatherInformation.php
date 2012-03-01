@@ -5,7 +5,7 @@ namespace Javiacei\WeatherGuyBundle\Model;
 /**
  * WeatherInformation
  *
- * @package JaviaceiLyricsBundle
+ * @package JaviaceiWeatherGuyBundle
  * @subpackage Model
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  * @copyright Fco Javier Aceituno

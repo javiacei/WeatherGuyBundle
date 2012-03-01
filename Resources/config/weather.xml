@@ -27,6 +27,7 @@
         <service id="weather.guy" class="%weather.guy.class%">
             <argument type="service" id="weather.guy.station.manager" />        <!-- Finder -->
             <argument type="service" id="weather.guy.information.manager" />    <!-- Engine -->
+            <argument key="distanceRange">%distance_range%</argument>
         </service>
     </services>
 

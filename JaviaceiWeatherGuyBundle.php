@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 /**
  * JaviaceiWeatherGuyBundle
  *
- * @package JaviaceiLyricsBundle
+ * @package JaviaceiWeatherGuyBundle
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  * @copyright Fco Javier Aceituno
  */

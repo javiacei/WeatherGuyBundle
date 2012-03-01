@@ -5,7 +5,7 @@ namespace Javiacei\WeatherGuyBundle\Geocoding\Google;
 /**
  * GoogleGeocoding
  *
- * @package JaviaceiLyricsBundle
+ * @package JaviaceiWeatherGuyBundle
  * @subpackage Geocoding
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
  * @copyright Fco Javier Aceituno

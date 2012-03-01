@@ -12,9 +12,10 @@ use
 /**
  * WeatherStationManager
  *
- * @package JaviaceiLyricsBundle
+ * @package JaviaceiWeatherGuyBundle
  * @subpackage Model
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @author Ignacio Velázquez Gómez <ivelazquez85@gmail.com>
  * @copyright Fco Javier Aceituno
  */
 class WeatherStationManager implements WeatherFinderInterface
@@ -91,26 +92,12 @@ class WeatherStationManager implements WeatherFinderInterface
     public function findWeatherLocation($address, $distance)
     {
         $location = $this->geocoding->getLocation($address);
-        
-        $rsm = new \Doctrine\ORM\Query\ResultSetMapping;
-        $rsm->addEntityResult('JaviaceiWeatherGuyBundle:WeatherStation', 'ws');
-        $rsm->addScalarResult('id', 'id');
-        
-        $query = $this
-            ->getEntityManager()->createNativeQuery(
-                '   SELECT ws.id as id, SQRT(
-                        POW(69.1 * (ws.latitude - :latitude), 2) +
-                        POW(69.1 * (:longitude - ws.longitude) * COS(ws.latitude / 57.3), 2)
-                    ) AS distance
-                    FROM weather_guy_weather_station ws HAVING distance < :distance ORDER BY distance LIMIT 0,1;
-                ', $rsm)
-            ->setParameters(array(
-                'latitude'  => $location->getLatitude(),
-                'longitude' => $location->getLongitude(),
-                'distance'  => $distance
-            ))
-        ;
-        
-        return $this->getRepository()->findOneBy($query->getSingleResult());
+
+        $station = $this->getRepository()->findClosestStation($location, $distance);
+
+        if ($station == null)
+            return null;
+        else
+            return $this->getRepository()->findOneBy($station);
     }
 }

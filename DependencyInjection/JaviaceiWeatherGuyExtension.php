@@ -13,9 +13,10 @@ use Symfony\Component\Config\Definition\Processor;
  *
  * Class that defines the Dependency Injection Extension to expose the bundle's semantic configuration
  * 
- * @package JaviaceiLyricsBundle
+ * @package JaviaceiWeatherGuyBundle
  * @subpackage DependencyInjection
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @author Ignacio Velázquez Gómez <ivelazquez85@gmail.com>
  * @copyright Fco Javier Aceituno
  */
 class JaviaceiWeatherGuyExtension extends Extension
@@ -37,5 +38,6 @@ class JaviaceiWeatherGuyExtension extends Extension
         $container->setParameter('climatological_year_path', $config['climatological_year_path']);
         
         $container->setParameter('adapter_class', $config['adapter_class']);
+        $container->setParameter('distance_range', $config['distance_range']);
     }
 }
