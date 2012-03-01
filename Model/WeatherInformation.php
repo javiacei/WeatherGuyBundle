@@ -1,12 +1,14 @@
 <?php
 
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
-namespace Ideup\WeatherGuyBundle\Model;
+namespace Javiacei\WeatherGuyBundle\Model;
 
 /**
- * Description of WeatherInformation
+ * WeatherInformation
  *
+ * @package JaviaceiLyricsBundle
+ * @subpackage Model
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
  */
 abstract class WeatherInformation
 {

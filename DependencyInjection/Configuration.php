@@ -1,6 +1,6 @@
 <?php
 
-namespace Ideup\WeatherGuyBundle\DependencyInjection;
+namespace Javiacei\WeatherGuyBundle\DependencyInjection;
 
 use 
     Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition,
@@ -14,9 +14,10 @@ use
  * This information is solely responsible for how the different configuration
  * sections are normalized, and merged.
  *
- * @package IdeupWeatherGuyBundle
+ * @package JaviaceiLyricsBundle
  * @subpackage DependencyInjection
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
  */
 class Configuration implements ConfigurationInterface
 {    
@@ -28,13 +29,13 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('ideup_weather_guy');
+        $rootNode = $treeBuilder->root('javiacei_weather_guy');
         
         $rootNode
             ->children()
                 ->scalarNode('ftp_server')->defaultValue('ftpdatos.aemet.es')->end()
                 ->scalarNode('climatological_year_path')->defaultValue('series_climatologicas/valores_diarios/anual')->end()
-                ->scalarNode('adapter_class')->defaultValue('Ideup\WeatherGuyBundle\Geocoding\Adapter\GoogleGeocodingAdapter')->end()
+                ->scalarNode('adapter_class')->defaultValue('Javiacei\WeatherGuyBundle\Geocoding\Adapter\GoogleGeocodingAdapter')->end()
             ->end()
         ;
 

@@ -1,15 +1,16 @@
 <?php
 
 /**
- * Description of WeatherStation
- * 
- * @package IdeupWeatherGuyBundle
+ * WeatherStation
+ *
+ * @package JaviaceiLyricsBundle
  * @subpackage Entity
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
  */
-namespace Ideup\WeatherGuyBundle\Entity;
+namespace Javiacei\WeatherGuyBundle\Entity;
 
-use Ideup\WeatherGuyBundle\Model\WeatherStation as AbstractStation;
+use Javiacei\WeatherGuyBundle\Model\WeatherStation as AbstractStation;
 
 class WeatherStation extends AbstractStation
 {

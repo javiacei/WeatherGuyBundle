@@ -1,17 +1,22 @@
 <?php
 
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
-
-namespace Ideup\WeatherGuyBundle\Tests\Model\Manager;
-
+namespace Javiacei\WeatherGuyBundle\Tests\Model\Manager;
 
 use
     Symfony\Bundle\FrameworkBundle\Test\WebTestCase,
     
-    Ideup\WeatherGuyBundle\Model\WeatherStation,
-    Ideup\WeatherGuyBundle\Model\Manager\WeatherStationManager
+    Javiacei\WeatherGuyBundle\Model\WeatherStation,
+    Javiacei\WeatherGuyBundle\Model\Manager\WeatherStationManager
 ;
 
+/**
+ * WeatherStationManagerTest
+ *
+ * @package JaviaceiLyricsBundle
+ * @subpackage Tests
+ * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
+ */
 class WeatherStationManagerTest extends WebTestCase
 {
     const LATITUDE_TEST = 40.6587542;
@@ -28,7 +33,7 @@ class WeatherStationManagerTest extends WebTestCase
         $em = $this->getMock('Doctrine\ORM\EntityManager', array(), array(), '', false);
         
         // Location Mock
-        $geoLocation = $this->getMock('Ideup\WeatherGuyBundle\Geocoding\IGeocodingLocation');
+        $geoLocation = $this->getMock('Javiacei\WeatherGuyBundle\Geocoding\IGeocodingLocation');
         
         $geoLocation
             ->expects($this->any())
@@ -41,7 +46,7 @@ class WeatherStationManagerTest extends WebTestCase
             ->will($this->returnValue(self::LONGITUDE_TEST));
 
         // Geocoding Mock
-        $geocoding = $this->getMock('Ideup\WeatherGuyBundle\Geocoding\IGeocodingAdapter');
+        $geocoding = $this->getMock('Javiacei\WeatherGuyBundle\Geocoding\IGeocodingAdapter');
         
         $geocoding
             ->expects($this->any())

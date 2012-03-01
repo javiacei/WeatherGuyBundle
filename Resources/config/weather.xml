@@ -7,9 +7,9 @@
     <parameters>
         <parameter key="weather.guy.finder.geocoding.class">%adapter_class%</parameter>
         
-        <parameter key="weather.guy.station.manager.class">Ideup\WeatherGuyBundle\Model\Manager\WeatherStationManager</parameter>
-        <parameter key="weather.guy.information.manager.class">Ideup\WeatherGuyBundle\Model\Manager\WeatherInformationManager</parameter>
-        <parameter key="weather.guy.class">Ideup\WeatherGuyBundle\Model\WeatherGuy</parameter>
+        <parameter key="weather.guy.station.manager.class">Javiacei\WeatherGuyBundle\Model\Manager\WeatherStationManager</parameter>
+        <parameter key="weather.guy.information.manager.class">Javiacei\WeatherGuyBundle\Model\Manager\WeatherInformationManager</parameter>
+        <parameter key="weather.guy.class">Javiacei\WeatherGuyBundle\Model\WeatherGuy</parameter>
     </parameters>
 
     <services>

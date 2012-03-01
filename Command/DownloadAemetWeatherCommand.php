@@ -1,6 +1,6 @@
 <?php
 
-namespace Ideup\WeatherGuyBundle\Command;
+namespace Javiacei\WeatherGuyBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -9,11 +9,12 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Description of DownloadAemetWeatherCommand
- * 
- * @package IdeupWeatherGuyBundle
+ * DownloadAemetWeatherCommand
+ *
+ * @package JaviaceiLyricsBundle
  * @subpackage Command
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
  */
 class DownloadAemetWeatherCommand extends ContainerAwareCommand
 {

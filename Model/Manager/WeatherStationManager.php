@@ -1,22 +1,23 @@
 <?php
 
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
-namespace Ideup\WeatherGuyBundle\Model\Manager;
+namespace Javiacei\WeatherGuyBundle\Model\Manager;
 
 use 
     Doctrine\ORM\EntityManager,
-    Ideup\WeatherGuyBundle\Geocoding\IGeocodingAdapter,
-    Ideup\WeatherGuyBundle\Entity\WeatherStation,
-    
-    Ideup\WeatherGuyBundle\Model\IWeatherFinder
+    Javiacei\WeatherGuyBundle\Geocoding\GeocodingAdapterInterface,
+    Javiacei\WeatherGuyBundle\Entity\WeatherStation,
+    Javiacei\WeatherGuyBundle\Model\WeatherFinderInterface
 ;
 
 /**
- * Description of WeatherLocationManager
+ * WeatherStationManager
  *
+ * @package JaviaceiLyricsBundle
+ * @subpackage Model
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
  */
-class WeatherStationManager implements IWeatherFinder
+class WeatherStationManager implements WeatherFinderInterface
 {
     const DEFAULT_COUNTRY = "España";
     
@@ -24,7 +25,7 @@ class WeatherStationManager implements IWeatherFinder
     
     protected $em;
     
-    public function __construct(EntityManager $em, IGeocodingAdapter $geo)
+    public function __construct(EntityManager $em, GeocodingAdapterInterface $geo)
     {
         $this->geocoding    = $geo;
         $this->em           = $em;
@@ -57,7 +58,7 @@ class WeatherStationManager implements IWeatherFinder
     
     public function getRepository()
     {
-        return $this->getEntityManager()->getRepository('IdeupWeatherGuyBundle:WeatherStation');
+        return $this->getEntityManager()->getRepository('JaviaceiWeatherGuyBundle:WeatherStation');
     }
     
     public function save(WeatherStation $weatherStation)
@@ -92,7 +93,7 @@ class WeatherStationManager implements IWeatherFinder
         $location = $this->geocoding->getLocation($address);
         
         $rsm = new \Doctrine\ORM\Query\ResultSetMapping;
-        $rsm->addEntityResult('IdeupWeatherGuyBundle:WeatherStation', 'ws');
+        $rsm->addEntityResult('JaviaceiWeatherGuyBundle:WeatherStation', 'ws');
         $rsm->addScalarResult('id', 'id');
         
         $query = $this

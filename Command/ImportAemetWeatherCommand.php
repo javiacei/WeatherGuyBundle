@@ -1,6 +1,6 @@
 <?php
 
-namespace Ideup\WeatherGuyBundle\Command;
+namespace Javiacei\WeatherGuyBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -9,17 +9,18 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use 
-    Ideup\WeatherGuyBundle\Model\Unit\Celsius,
-    Ideup\WeatherGuyBundle\Model\Unit\Millimeters,
-    Ideup\WeatherGuyBundle\Model\Unit\Hours
+    Javiacei\WeatherGuyBundle\Model\Unit\Celsius,
+    Javiacei\WeatherGuyBundle\Model\Unit\Millimeters,
+    Javiacei\WeatherGuyBundle\Model\Unit\Hours
 ;
 
 /**
- * Description of ImportAemetWeatherCommand
+ * ImportAemetWeatherCommand
  *
- * @package IdeupWeatherGuyBundle
+ * @package JaviaceiLyricsBundle
  * @subpackage Command
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
  */
 class ImportAemetWeatherCommand extends ContainerAwareCommand
 {

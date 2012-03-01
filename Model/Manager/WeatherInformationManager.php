@@ -1,22 +1,24 @@
 <?php
 
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
-namespace Ideup\WeatherGuyBundle\Model\Manager;
+namespace Javiacei\WeatherGuyBundle\Model\Manager;
 
 use 
     Doctrine\ORM\EntityManager,
-    Ideup\WeatherGuyBundle\Entity\WeatherInformation,
-    
-    Ideup\WeatherGuyBundle\Model\WeatherStation,
-    Ideup\WeatherGuyBundle\Model\IWeatherEngine
+    Javiacei\WeatherGuyBundle\Entity\WeatherInformation,
+    Javiacei\WeatherGuyBundle\Model\WeatherStation,
+    Javiacei\WeatherGuyBundle\Model\WeatherEngineInterface
 ;
 
 /**
- * Description of WeatherInformationManager
+ * WeatherInformationManager
  *
+ * @package JaviaceiLyricsBundle
+ * @subpackage Model
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
  */
-class WeatherInformationManager implements IWeatherEngine
+class WeatherInformationManager implements WeatherEngineInterface
 {
     protected $em;
     
@@ -32,7 +34,7 @@ class WeatherInformationManager implements IWeatherEngine
     
     public function getRepository()
     {
-        return $this->getEntityManager()->getRepository('IdeupWeatherGuyBundle:WeatherInformation');
+        return $this->getEntityManager()->getRepository('JaviaceiWeatherGuyBundle:WeatherInformation');
     }
     
     public function create(WeatherStation $station, \DateTime $date)
@@ -74,7 +76,7 @@ class WeatherInformationManager implements IWeatherEngine
         try {
             $info = $qb
                 ->select('i')
-                ->from('IdeupWeatherGuyBundle:WeatherInformation', 'i')
+                ->from('JaviaceiWeatherGuyBundle:WeatherInformation', 'i')
                 ->where('i.date = :date')
                 ->andWhere('i.station = :station_id')
                 ->setParameters(array(

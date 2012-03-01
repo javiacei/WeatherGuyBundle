@@ -1,15 +1,16 @@
 <?php
 
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
-
-namespace Ideup\WeatherGuyBundle\Geocoding;
+namespace Javiacei\WeatherGuyBundle\Geocoding;
 
 /**
- * Description of IGeocodingLocation
- * 
+ * GeocodingLocationInterface
+ *
+ * @package JaviaceiLyricsBundle
+ * @subpackage Geocoding
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
  */
-interface IGeocodingLocation
+interface GeocodingLocationInterface
 {
     /**
      * @return float 

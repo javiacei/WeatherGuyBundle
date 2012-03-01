@@ -1,6 +1,6 @@
 <?php
 
-namespace Ideup\WeatherGuyBundle\DependencyInjection;
+namespace Javiacei\WeatherGuyBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -9,15 +9,16 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
 
 /**
- * IdeupWeatherGuy Dependency Injection Extension
+ * JaviaceiWeatherGuyExtension Dependency Injection Extension
  *
  * Class that defines the Dependency Injection Extension to expose the bundle's semantic configuration
  * 
- * @package IdeupWeatherGuyBundle
+ * @package JaviaceiLyricsBundle
  * @subpackage DependencyInjection
- * @author Francisco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
  */
-class IdeupWeatherGuyExtension extends Extension
+class JaviaceiWeatherGuyExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {

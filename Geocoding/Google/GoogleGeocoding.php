@@ -1,14 +1,15 @@
 <?php
 
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
-namespace Ideup\WeatherGuyBundle\Geocoding\Google;
+namespace Javiacei\WeatherGuyBundle\Geocoding\Google;
 
 /**
- * Description of GoogleGeocoding
+ * GoogleGeocoding
  *
+ * @package JaviaceiLyricsBundle
+ * @subpackage Geocoding
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
  */
-
 class GoogleGeocoding
 {
     const OK = "OK";

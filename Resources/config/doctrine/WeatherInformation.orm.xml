@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Ideup\WeatherGuyBundle\Entity\WeatherInformation" table="weather_guy_weather_information">
+    <entity name="Javiacei\WeatherGuyBundle\Entity\WeatherInformation" table="weather_guy_weather_information">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>

@@ -1,12 +1,14 @@
 <?php
 
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
-namespace Ideup\WeatherGuyBundle\Model;
+namespace Javiacei\WeatherGuyBundle\Model;
 
 /**
- * Description of WeatherGuy
+ * WeatherGuy
  *
+ * @package JaviaceiLyricsBundle
+ * @subpackage Model
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
  */
 class WeatherGuy
 {
@@ -14,7 +16,7 @@ class WeatherGuy
     
     protected $weatherFinder;
     
-    public function __construct(IWeatherFinder $finder, IWeatherEngine $engine)
+    public function __construct(WeatherFinderInterface $finder, WeatherEngineInterface $engine)
     {
         $this->weatherFinder = $finder;
         $this->weatherEngine = $engine;

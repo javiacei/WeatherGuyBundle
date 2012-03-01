@@ -1,12 +1,14 @@
 <?php
 
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
-namespace Ideup\WeatherGuyBundle\Model\Unit;
+namespace Javiacei\WeatherGuyBundle\Model\Unit;
 
 /**
- * Description of TemperatureCelsius
+ * Celsius
  *
+ * @package JaviaceiLyricsBundle
+ * @subpackage Model
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
  */
 class Celsius extends Measure
 {

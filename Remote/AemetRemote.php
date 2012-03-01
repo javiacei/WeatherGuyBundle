@@ -1,7 +1,15 @@
 <?php
 
-namespace Ideup\WeatherGuyBundle\Remote;
+namespace Javiacei\WeatherGuyBundle\Remote;
 
+/**
+ * AemetRemote
+ *
+ * @package JaviaceiLyricsBundle
+ * @subpackage Remote
+ * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
+ */
 class AemetRemote
 {
     const FTP_SERVER_USER = 'anonymous';

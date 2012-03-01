@@ -1,15 +1,16 @@
 <?php
 
 /**
- * Description of WeatherInformation
- * 
- * @package IdeupWeatherGuyBundle
+ * WeatherInformation
+ *
+ * @package JaviaceiLyricsBundle
  * @subpackage Entity
  * @author Fco Javier Aceituno <fco.javier.aceituno@gmail.com>
+ * @copyright Fco Javier Aceituno
  */
-namespace Ideup\WeatherGuyBundle\Entity;
+namespace Javiacei\WeatherGuyBundle\Entity;
 
-use Ideup\WeatherGuyBundle\Model\WeatherInformation as AbstractInformation;
+use Javiacei\WeatherGuyBundle\Model\WeatherInformation as AbstractInformation;
 
 class WeatherInformation extends AbstractInformation
 {
