@@ -41,7 +41,8 @@ class GoogleGeocodingAdapter implements GeocodingAdapterInterface
 
         // Return only one location
         if (empty($locations)) {
-            throw new \Exception("No location found for '$address'");
+            return null;
+//            throw new \Exception("No location found for '$address'");
         }
 
         // Returns first result (more important).

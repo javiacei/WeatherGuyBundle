@@ -28,6 +28,11 @@ class WeatherGuy
     {
         return $this->weatherFinder->findWeatherLocation($address, $this->distanceRange);
     }
+
+    public function getWeatherLocationByGeo($lat, $long)
+    {
+        return $this->weatherFinder->findWeatherLocationByGeo($lat, $long, $this->distanceRange);
+    }
     
     public function getWeatherInformation(WeatherStation $station, \DateTime $date)
     {

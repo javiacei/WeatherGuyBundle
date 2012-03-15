@@ -6,7 +6,8 @@ use
     Doctrine\ORM\EntityManager,
     Javiacei\WeatherGuyBundle\Geocoding\GeocodingAdapterInterface,
     Javiacei\WeatherGuyBundle\Entity\WeatherStation,
-    Javiacei\WeatherGuyBundle\Model\WeatherFinderInterface
+    Javiacei\WeatherGuyBundle\Model\WeatherFinderInterface,
+    Javiacei\WeatherGuyBundle\Geocoding\GeocodingLocation
 ;
 
 /**
@@ -101,6 +102,20 @@ class WeatherStationManager implements WeatherFinderInterface
     public function findWeatherLocation($address, $distance)
     {
         $location = $this->geocoding->getLocation($address);
+
+        $station = $this->getRepository()->findClosestStation($location, $distance);
+
+        if ($station == null)
+            return null;
+        else
+            return $this->getRepository()->findOneBy($station);
+    }
+
+    public function findWeatherLocationByGeo($lat, $long, $distance)
+    {
+//        $location = $this->geocoding->getLocation($address);
+
+        $location = new GeocodingLocation($lat, $long);
 
         $station = $this->getRepository()->findClosestStation($location, $distance);
 
