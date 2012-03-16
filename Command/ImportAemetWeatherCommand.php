@@ -77,7 +77,7 @@ EOT
         }
         
         $info = array_combine($this->csvStructure, $row);
-        
+
         return array_map(
             function($e){
                 if (mb_detect_encoding($e, "auto") == 'UTF-8') {
@@ -122,7 +122,7 @@ EOT
             $temperatureHHmm = (string)$aemetCsvRow["{$type}TemperatureHHmm"];
         }
         
-        $value  = (float)$aemetCsvRow["{$type}Temperature"];
+        $value  = (float)str_replace(",", ".", $aemetCsvRow["{$type}Temperature"]);
         $moment = new \DateTime($dateString . " " . $temperatureHHmm);
         
         return new Celsius($value, $moment);
@@ -136,7 +136,7 @@ EOT
      */
     private function getPrecipitationOf(array $aemetCsvRow)
     {
-        return new Millimeters((float)$aemetCsvRow['precipitation']);
+        return new Millimeters((float)str_replace(",", ".", $aemetCsvRow['precipitation']));
     }
     
     /**
@@ -147,7 +147,7 @@ EOT
      */
     protected function getSunshineOf(array $aemetCsvRow)
     {
-        return new Hours($aemetCsvRow['sunshine']);
+        return new Hours((float)str_replace(",", ".", $aemetCsvRow['sunshine']));
     }
     
     /**
@@ -166,7 +166,7 @@ EOT
         
         while($row = $file->fgetcsv(";")) {
             $info = $this->prepareRow($row);
-            
+
             // To jump empty lines
             if (null === $info) {
                 continue;
@@ -192,7 +192,7 @@ EOT
                 
                 continue;
             }
-            
+
             $weatherInfo->setMaxTemperature($this->getTemperatureOf($info, 'max'));
             $weatherInfo->setMinTemperature($this->getTemperatureOf($info, 'min'));
             $weatherInfo->setAvgTemperature($this->getTemperatureOf($info, 'avg'));
