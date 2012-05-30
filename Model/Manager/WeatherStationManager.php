@@ -124,4 +124,8 @@ class WeatherStationManager implements WeatherFinderInterface
         else
             return $this->getRepository()->findOneBy($station);
     }
+    
+    public function findLatestByStation(WeatherStation $station){
+        return $this->getEntityManager()->getRepository('JaviaceiWeatherGuyBundle:WeatherInformation')->findLatest($station);
+    }
 }
