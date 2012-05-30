@@ -2,12 +2,12 @@
 
 namespace Javiacei\WeatherGuyBundle\Model\Manager;
 
-use 
-    Doctrine\ORM\EntityManager,
+use Doctrine\ORM\EntityManager,
     Javiacei\WeatherGuyBundle\Geocoding\GeocodingAdapterInterface,
     Javiacei\WeatherGuyBundle\Entity\WeatherStation,
     Javiacei\WeatherGuyBundle\Model\WeatherFinderInterface,
     Javiacei\WeatherGuyBundle\Geocoding\GeocodingLocation
+
 ;
 
 /**
@@ -21,16 +21,16 @@ use
  */
 class WeatherStationManager implements WeatherFinderInterface
 {
+
     const DEFAULT_COUNTRY = "España";
-    
+
     protected $geocoding;
-    
     protected $em;
-    
+
     public function __construct(EntityManager $em, GeocodingAdapterInterface $geo)
     {
-        $this->geocoding    = $geo;
-        $this->em           = $em;
+        $this->geocoding = $geo;
+        $this->em = $em;
     }
 
     /**
@@ -46,54 +46,54 @@ class WeatherStationManager implements WeatherFinderInterface
     {
         $address = $locality . " " . $city . ", " . $country;
         $geoLocation = $this->geocoding->getLocation($address);
-        
+
         $data = array(
-            'name'      => $name,
-            'city'      => $city,
-            'locality'  => $locality,
-            'country'   => $country,
-            'latitude'  => $geoLocation->getLatitude(),
+            'name' => $name,
+            'city' => $city,
+            'locality' => $locality,
+            'country' => $country,
+            'latitude' => $geoLocation->getLatitude(),
             'longitude' => $geoLocation->getLongitude()
         );
-        
+
         $weatherStation = new WeatherStation();
         $weatherStation->fromArray($data);
 
         return $weatherStation;
     }
-    
+
     public function getEntityManager()
     {
         return $this->em;
     }
-    
+
     public function getRepository()
     {
         return $this->getEntityManager()->getRepository('JaviaceiWeatherGuyBundle:WeatherStation');
     }
-    
+
     public function save(WeatherStation $weatherStation)
     {
         $this->getEntityManager()->persist($weatherStation);
         $this->getEntityManager()->flush();
     }
-    
+
     public function delete(WeatherStation $weatherStation)
     {
         $this->getEntityManager()->detach($weatherStation);
         $this->getEntityManager()->flush();
     }
-    
+
     public function findStationByName($name)
     {
         return $this->getRepository()->findOneBy(array('name' => $name));
     }
-    
+
     public function findStationsBy(array $criteria)
     {
         return $this->getRepository()->findBy($criteria);
     }
-    
+
     public function existStationBy(array $criteria)
     {
         return count($this->findStationsBy($criteria)) > 0;
@@ -124,4 +124,10 @@ class WeatherStationManager implements WeatherFinderInterface
         else
             return $this->getRepository()->findOneBy($station);
     }
+
+    public function findLatestByStation(WeatherStation $station)
+    {
+        return $this->getEntityManager()->getRepository('JaviaceiWeatherGuyBundle:WeatherInformation')->findLatest($station);
+    }
+
 }
