@@ -16,7 +16,7 @@
         "symfony/symfony":  ">=2.0"
     },
     "autoload":     {
-        "psr-0": { "Javiacei\\Bundle\\WeatherGuyBundle": "" }
+        "psr-0": { "Javiacei\\WeatherGuyBundle": "" }
     },
-    "target-dir": "Javiacei/Bundle/WeatherGuyBundle"
+    "target-dir": "Javiacei/WeatherGuyBundle"
 }
