@@ -45,8 +45,6 @@ class WeatherStationManager implements WeatherFinderInterface
     public function create($name, $locality, $city, $country = self::DEFAULT_COUNTRY)
     {
         $address = $locality . " " . $city . ", " . $country;
-        $geoLocation = $this->geocoding->getLocation($address);
-
         $data = array(
             'name' => $name,
             'city' => $city,
@@ -55,6 +53,14 @@ class WeatherStationManager implements WeatherFinderInterface
             'latitude' => $geoLocation->getLatitude(),
             'longitude' => $geoLocation->getLongitude()
         );
+        if ($geoLocation = $this->geocoding->getLocation($address)) {
+            $data = array_merge($data,
+                array(
+                    'latitude' => $geoLocation->getLatitude(),
+                    'longitude' => $geoLocation->getLongitude()
+                )
+            );
+        }
 
         $weatherStation = new WeatherStation();
         $weatherStation->fromArray($data);
