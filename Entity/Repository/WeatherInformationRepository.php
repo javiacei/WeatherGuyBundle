@@ -17,6 +17,7 @@ use Doctrine\ORM\AbstractQuery;
  */
 class WeatherInformationRepository extends EntityRepository
 {
+
     public function findInformation(WeatherStation $station, \DateTime $date)
     {
         $queryBuilder = $this->getEntityManager()->createQueryBuilder()
@@ -38,4 +39,25 @@ class WeatherInformationRepository extends EntityRepository
 
         return $info;
     }
+
+    public function findLatest(WeatherStation $station)
+    {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder()
+                ->select('i')
+                ->from('JaviaceiWeatherGuyBundle:WeatherInformation', 'i')
+                ->where('i.station = :station_id')
+                ->setParameters(array(
+                    'station_id' => $station->id,
+                ))->orderBy('i.date', 'DESC')
+                ->setMaxResults(1);
+
+        try {
+            $item = $queryBuilder->getQuery()->getSingleResult();
+        } catch (\Doctrine\ORM\NoResultException $exc) {
+            return null;
+        }
+
+        return $item;
+    }
+
 }
