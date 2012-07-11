@@ -26,11 +26,11 @@ class WeatherInformationRepository extends EntityRepository
             ->andWhere('i.station = :station_id')
             ->setParameters(array(
                 'station_id'    => $station->id,
-                'date'          => $date
+                'date'          => $date->format('Y-m-d')
             ))
         ;
 
-        try{
+        try {
             $info = $queryBuilder->getQuery()->getSingleResult();
         } catch (\Doctrine\ORM\NoResultException $exc) {
             return null;
